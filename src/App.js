@@ -97,8 +97,7 @@ class App extends React.Component {
                 <option>CTSE</option>
               </Form.Control>
             </Form>
-            <div style={{ left: 0 }}>
-              {" "}
+            <div style={{ float: "left" }}>
               <span style={{ marginRight: 10 }}>Contribute</span>{" "}
               <img src={gitlogo} style={{ width: 30, height: 30 }} />
             </div>
