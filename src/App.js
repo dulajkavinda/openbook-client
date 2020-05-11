@@ -42,9 +42,6 @@ class App extends React.Component {
         var content_lower = ct.toLowerCase();
         let myReg = new RegExp(keyword + ".*");
         if (content_lower.match(myReg)) {
-          console.log(ct);
-          console.log("Page No : " + ++index);
-          console.log("Lecture " + el.lectureName);
           let resultArray = {
             pageContent: ct,
             pageNumber: ++index,
