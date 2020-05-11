@@ -38,9 +38,10 @@ class App extends React.Component {
     let aar = [];
     this.state.lectures.map((el, index) => {
       el.content.map((ct, index) => {
-        let keyword = this.state.input;
+        let keyword = this.state.input.toLocaleLowerCase();
+        var content_lower = ct.toLowerCase();
         let myReg = new RegExp(keyword + ".*");
-        if (ct.match(myReg)) {
+        if (content_lower.match(myReg)) {
           console.log(ct);
           console.log("Page No : " + ++index);
           console.log("Lecture " + el.lectureName);
