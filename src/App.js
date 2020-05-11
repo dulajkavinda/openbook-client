@@ -38,8 +38,8 @@ class App extends React.Component {
     let aar = [];
     this.state.lectures.map((el, index) => {
       el.content.map((ct, index) => {
-        let keyword = this.state.input.toLocaleLowerCase();
-        var content_lower = ct.toLowerCase();
+        let keyword = this.state.input.toLocaleLowerCase().replace(/ /g, "");
+        var content_lower = ct.toLowerCase().replace(/ /g, "");
         let myReg = new RegExp(keyword + ".*");
         if (content_lower.match(myReg)) {
           let resultArray = {
