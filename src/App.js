@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import "./App.css";
 
-import { Card, CardDeck, CardGroup, Form, Image } from "react-bootstrap";
+import { Card, Form } from "react-bootstrap";
 
 const gitlogo = require("./assets/github.png");
 
@@ -16,6 +16,7 @@ class App extends React.Component {
       lectureTitle: "",
       result: [],
       input: "",
+      status: false,
     };
   }
 
@@ -53,19 +54,26 @@ class App extends React.Component {
       });
     });
     this.setState({ result: aar });
+    if (aar.length === 0) {
+      this.setState({ status: true });
+    } else {
+      this.setState({ status: false });
+    }
   };
 
   render() {
     console.log(this.state.result);
+
     const child = this.state.result.map((el, index) => {
       return (
         <Card bg="dark" border="success" style={{ margin: 10 }}>
           <Card.Body>
-            <Card.Title style={{ color: "white", fontWeight: "bolder" }}>
+            <Card.Title style={{ color: "#36bdbe", fontWeight: "bold" }}>
               {el.lectureTitle}
             </Card.Title>
             <Card.Subtitle style={{ color: "yellow" }} className="mb-2 ">
-              Slide No : {el.pageNumber}
+              Slide No :{" "}
+              <span style={{ fontWeight: "bolder" }}>{el.pageNumber}</span>
             </Card.Subtitle>
             <Card.Text style={{ color: "white" }}>{el.pageContent}</Card.Text>
           </Card.Body>
@@ -96,32 +104,50 @@ class App extends React.Component {
             </div>
           </div>
         </div>
-
-        <div className="input-group">
-          <input
-            type="text"
-            className="form-control"
-            value={this.state.input}
-            name="todotask"
-            placeholder="Please enter..!"
-            autoComplete="off"
-            onChange={(e) => {
-              this.handleChange(e);
-            }}
-          />
-          <div className="input-group-append">
-            <button
-              onClick={() => {
+        <div style={{ margin: 20 }}>
+          <div className="input-group">
+            <input
+              type="text"
+              className="form-control"
+              value={this.state.input}
+              name="todotask"
+              placeholder="Type here..."
+              autoComplete="off"
+              onKeyPress={() => {
                 this.searchLectures();
               }}
-              className="btn btn-outline-success"
-            >
-              Search
-            </button>
+              onChange={(e) => {
+                this.handleChange(e);
+              }}
+            />
+            <div className="input-group-append">
+              <button
+                onClick={() => {
+                  this.searchLectures();
+                }}
+                className="btn btn-outline-success"
+              >
+                Search
+              </button>
+            </div>
           </div>
         </div>
 
-        <div style={{}}>{child}</div>
+        {this.state.status ? (
+          <div style={{ margin: 20 }}>
+            <Card bg="danger" className="text-center">
+              <Card.Body>
+                <Card.Text
+                  style={{ fontSize: 20, color: "white", fontWeight: "bold" }}
+                >
+                  Sorry no results found :(
+                </Card.Text>
+              </Card.Body>
+            </Card>
+          </div>
+        ) : (
+          <div style={{}}>{child}</div>
+        )}
       </div>
     );
   }
