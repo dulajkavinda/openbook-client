@@ -17,6 +17,7 @@ class App extends React.Component {
       result: [],
       input: "",
       status: false,
+      route: "lecture",
     };
   }
 
@@ -61,12 +62,16 @@ class App extends React.Component {
     }
   };
 
+  handleChangeSelect = (e) => {
+    this.setState({ route: e.target.value });
+  };
+
   render() {
     console.log(this.state.result);
 
     const child = this.state.result.map((el, index) => {
       return (
-        <Card bg="dark" border="success" style={{ margin: 10 }}>
+        <Card key={index} bg="dark" border="success" style={{ margin: 10 }}>
           <Card.Body>
             <Card.Title style={{ color: "#36bdbe", fontWeight: "bold" }}>
               {el.lectureTitle}
@@ -118,13 +123,22 @@ class App extends React.Component {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="mr-auto">
-              <NavDropdown
-                style={{ color: "black" }}
-                title="CTSE"
-                id="collasible-nav-dropdown"
-              >
-                <NavDropdown.Item href="#action/3.1">CTSE</NavDropdown.Item>
-              </NavDropdown>
+              <Form>
+                <Form.Group controlId="exampleForm.SelectCustom">
+                  <Form.Control
+                    onChange={(value) => {
+                      this.handleChangeSelect(value);
+                    }}
+                    as="select"
+                    custom
+                  >
+                    <option value="CTSE">
+                      CTSE (10/10 Lectures Processed)
+                    </option>
+                    <option value="ML">ML (01/10 Lectures Processed)</option>
+                  </Form.Control>
+                </Form.Group>
+              </Form>
             </Nav>
             <Nav>
               <Nav.Link eventKey={2} href="#">
