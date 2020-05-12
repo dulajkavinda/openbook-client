@@ -2,6 +2,8 @@ import React from "react";
 import axios from "axios";
 import "./App.css";
 
+import Highlighter from "react-highlight-words";
+
 import { Card, Form, Navbar, NavDropdown, Nav } from "react-bootstrap";
 
 const gitlogo = require("./assets/github.png");
@@ -23,7 +25,6 @@ class App extends React.Component {
 
   handleChange(e) {
     this.setState({ input: e.target.value });
-    console.log(this.state.input);
   }
 
   componentWillMount(data) {
@@ -64,6 +65,12 @@ class App extends React.Component {
     }
   };
 
+  onKeyPressHandler = (e) => {
+    if (e.key === "Enter") {
+      this.searchLectures();
+    }
+  };
+
   handleChangeSelect = (e) => {
     let data = e.target.value;
     this.componentWillMount(data);
@@ -85,7 +92,14 @@ class App extends React.Component {
               Slide No :{" "}
               <span style={{ fontWeight: "bolder" }}>{el.pageNumber}</span>
             </Card.Subtitle>
-            <Card.Text style={{ color: "white" }}>{el.pageContent}</Card.Text>
+            <Card.Text style={{ color: "white" }}>
+              <Highlighter
+                highlightStyle={{ backgroundColor: "#8fc397" }}
+                searchWords={this.state.input.split(" ")}
+                textToHighlight={el.pageContent}
+              />
+              }
+            </Card.Text>
           </Card.Body>
         </Card>
       );
@@ -137,9 +151,7 @@ class App extends React.Component {
               name="todotask"
               placeholder="Type here..."
               autoComplete="off"
-              onKeyPress={() => {
-                this.searchLectures();
-              }}
+              onKeyPress={(e) => this.onKeyPressHandler(e)}
               onChange={(e) => {
                 this.handleChange(e);
               }}
