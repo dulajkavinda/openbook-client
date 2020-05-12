@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import "./App.css";
 
-import { Card, Form } from "react-bootstrap";
+import { Card, Form, Navbar, NavDropdown, Nav } from "react-bootstrap";
 
 const gitlogo = require("./assets/github.png");
 
@@ -82,7 +82,7 @@ class App extends React.Component {
     });
     return (
       <div>
-        <div className="jumbotron jumbotron-fluid py-2">
+        {/* <div className="jumbotron jumbotron-fluid py-2">
           <div
             className="container"
             style={{
@@ -91,7 +91,7 @@ class App extends React.Component {
               alignItems: "center",
             }}
           >
-            <h1 className="display-4">Openbook 📝</h1>
+         
             <Form style={{ marginLeft: 40, marginRight: 40 }}>
               <Form.Control as="select" custom>
                 <option>CTSE</option>
@@ -102,7 +102,40 @@ class App extends React.Component {
               <img src={gitlogo} style={{ width: 30, height: 30 }} />
             </div>
           </div>
-        </div>
+        </div> */}
+        <Navbar
+          collapseOnSelect
+          expand="lg"
+          variant="light"
+          style={{ backgroundColor: "#e9ecef" }}
+        >
+          <Navbar.Brand href="#home">
+            {" "}
+            <h3 className="display-8" style={{ color: "black", fontSize: 40 }}>
+              Openbook 📝
+            </h3>
+          </Navbar.Brand>
+          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+          <Navbar.Collapse id="responsive-navbar-nav">
+            <Nav className="mr-auto">
+              <NavDropdown
+                style={{ color: "black" }}
+                title="CTSE"
+                id="collasible-nav-dropdown"
+              >
+                <NavDropdown.Item href="#action/3.1">CTSE</NavDropdown.Item>
+              </NavDropdown>
+            </Nav>
+            <Nav>
+              <Nav.Link
+                eventKey={2}
+                href="https://github.com/dulajkavinda/openbook-client-RT"
+              >
+                <img src={gitlogo} style={{ width: 30, height: 30 }} />
+              </Nav.Link>
+            </Nav>
+          </Navbar.Collapse>
+        </Navbar>
         <div style={{ margin: 20 }}>
           <div className="input-group">
             <input
@@ -124,7 +157,7 @@ class App extends React.Component {
                 onClick={() => {
                   this.searchLectures();
                 }}
-                className="btn btn-outline-success"
+                className="btn btn-success"
               >
                 Search
               </button>
