@@ -26,13 +26,15 @@ class App extends React.Component {
     console.log(this.state.input);
   }
 
-  componentDidMount() {
-    const url = "https://openbook-searcher.herokuapp.com/lecture/get_lec";
+  componentWillMount(data) {
+    const url = `https://openbook-searcher.herokuapp.com/${
+      data == null ? this.state.route : data
+    }/get_lec`;
     axios.get(url).then((res) => {
       this.setState({
         lectures: res.data,
       });
-      console.log(this.state.lectures);
+      // console.log(this.state.lectures);
     });
   }
 
@@ -63,7 +65,10 @@ class App extends React.Component {
   };
 
   handleChangeSelect = (e) => {
-    this.setState({ route: e.target.value });
+    let data = e.target.value;
+    this.componentWillMount(data);
+    console.log(e.target.value);
+    console.log(this.state.route);
   };
 
   render() {
@@ -132,10 +137,13 @@ class App extends React.Component {
                     as="select"
                     custom
                   >
-                    <option value="CTSE">
+                    <option value="lecture">
                       CTSE (10/10 Lectures Processed)
                     </option>
-                    <option value="ML">ML (01/10 Lectures Processed)</option>
+
+                    <option value="mllecture">
+                      ML (01/10 Lectures Processed)
+                    </option>
                   </Form.Control>
                 </Form.Group>
               </Form>
