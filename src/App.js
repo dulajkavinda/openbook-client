@@ -4,7 +4,7 @@ import "./App.css";
 
 import Highlighter from "react-highlight-words";
 
-import { Card, Form, Navbar, NavDropdown, Nav } from "react-bootstrap";
+import { Card, Form, Navbar, Nav } from "react-bootstrap";
 
 const gitlogo = require("./assets/github.png");
 
@@ -20,11 +20,12 @@ class App extends React.Component {
       input: "",
       status: false,
       route: "lecture",
+      inputEmpty: "",
     };
   }
 
   handleChange(e) {
-    this.setState({ input: e.target.value });
+    this.setState({ input: e.target.value, inputEmpty: false });
   }
 
   componentWillMount(data) {
@@ -40,28 +41,32 @@ class App extends React.Component {
   }
 
   searchLectures = () => {
-    let aar = [];
-    this.state.lectures.map((el, index) => {
-      el.content.map((ct, index) => {
-        let keyword = this.state.input.toLocaleLowerCase().replace(/ /g, "");
-        var content_lower = ct.toLowerCase().replace(/ /g, "");
-        let myReg = new RegExp(keyword + ".*");
-        if (content_lower.match(myReg)) {
-          let resultArray = {
-            pageContent: ct,
-            pageNumber: ++index,
-            lectureTitle: el.lectureName,
-          };
+    if (this.state.input !== "") {
+      let aar = [];
+      this.state.lectures.map((el, index) => {
+        el.content.map((ct, index) => {
+          let keyword = this.state.input.toLocaleLowerCase().replace(/ /g, "");
+          var content_lower = ct.toLowerCase().replace(/ /g, "");
+          let myReg = new RegExp(keyword + ".*");
+          if (content_lower.match(myReg)) {
+            let resultArray = {
+              pageContent: ct,
+              pageNumber: ++index,
+              lectureTitle: el.lectureName,
+            };
 
-          aar.push(resultArray);
-        }
+            aar.push(resultArray);
+          }
+        });
       });
-    });
-    this.setState({ result: aar });
-    if (aar.length === 0) {
-      this.setState({ status: true });
+      this.setState({ result: aar });
+      if (aar.length === 0) {
+        this.setState({ status: true });
+      } else {
+        this.setState({ status: false });
+      }
     } else {
-      this.setState({ status: false });
+      this.setState({ inputEmpty: true });
     }
   };
 
@@ -143,10 +148,14 @@ class App extends React.Component {
           </Navbar.Collapse>
         </Navbar>
         <div style={{ margin: 20 }}>
-          <div className="input-group">
+          <div className="input-group ">
             <input
               type="text"
-              className="form-control"
+              className={
+                this.state.inputEmpty
+                  ? "form-control is-invalid"
+                  : "form-control"
+              }
               value={this.state.input}
               name="todotask"
               placeholder="Type here..."
