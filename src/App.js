@@ -92,32 +92,13 @@ class App extends React.Component {
     });
     return (
       <div>
-        {/* <div className="jumbotron jumbotron-fluid py-2">
-          <div
-            className="container"
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-         
-            <Form style={{ marginLeft: 40, marginRight: 40 }}>
-              <Form.Control as="select" custom>
-                <option>CTSE</option>
-              </Form.Control>
-            </Form>
-            <div style={{ float: "left" }}>
-              <span style={{ marginRight: 10 }}>Contribute</span>{" "}
-              <img src={gitlogo} style={{ width: 30, height: 30 }} />
-            </div>
-          </div>
-        </div> */}
         <Navbar
           collapseOnSelect
           expand="lg"
           variant="light"
-          style={{ backgroundColor: "#e9ecef" }}
+          style={{
+            backgroundColor: "#e9ecef",
+          }}
         >
           <Navbar.Brand href="#home">
             {" "}
@@ -128,25 +109,17 @@ class App extends React.Component {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="mr-auto">
-              <Form>
-                <Form.Group controlId="exampleForm.SelectCustom">
-                  <Form.Control
-                    onChange={(value) => {
-                      this.handleChangeSelect(value);
-                    }}
-                    as="select"
-                    custom
-                  >
-                    <option value="lecture">
-                      CTSE (10/10 Lectures Processed)
-                    </option>
+              <Form.Control
+                onChange={(value) => {
+                  this.handleChangeSelect(value);
+                }}
+                as="select"
+                custom
+              >
+                <option value="lecture">CTSE (10/10 Lectures Processed)</option>
 
-                    <option value="mllecture">
-                      ML (01/10 Lectures Processed)
-                    </option>
-                  </Form.Control>
-                </Form.Group>
-              </Form>
+                <option value="mllecture">ML (01/10 Lectures Processed)</option>
+              </Form.Control>
             </Nav>
             <Nav>
               <Nav.Link eventKey={2} href="#">
