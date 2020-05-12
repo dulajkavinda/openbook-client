@@ -127,10 +127,7 @@ class App extends React.Component {
               </NavDropdown>
             </Nav>
             <Nav>
-              <Nav.Link
-                eventKey={2}
-                href="https://github.com/dulajkavinda/openbook-client-RT"
-              >
+              <Nav.Link eventKey={2} href="#">
                 <img src={gitlogo} style={{ width: 30, height: 30 }} />
               </Nav.Link>
             </Nav>
