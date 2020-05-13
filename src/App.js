@@ -136,8 +136,8 @@ class App extends React.Component {
                 custom
               >
                 <option value="lecture">CTSE (10/10 Lectures Processed)</option>
-
                 <option value="mllecture">ML (01/10 Lectures Processed)</option>
+                <option value="dslecture">DS (08/08 Lectures Processed)</option>
               </Form.Control>
             </Nav>
             <Nav>
