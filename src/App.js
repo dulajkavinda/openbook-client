@@ -141,6 +141,9 @@ class App extends React.Component {
                 <option value="mtitlecture">
                   MTIT (08/08 Lectures Processed)
                 </option>
+                <option value="cfirlecture">
+                  CFIR (05/05 Lectures Processed)
+                </option>
                 <option value="lecture">QA (00/10 Lectures Processed)</option>
               </Form.Control>
             </Nav>
