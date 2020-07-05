@@ -145,6 +145,12 @@ class App extends React.Component {
                   CFIR (05/05 Lectures Processed)
                 </option>
                 <option value="lecture">QA (00/10 Lectures Processed)</option>
+                <option value="mktnlecture">
+                  Marketing (10/10 Lectures Processed)
+                </option>
+                <option value="econlecture">
+                  Econ (09/09 Lectures Processed)
+                </option>
               </Form.Control>
             </Nav>
             <Nav>
