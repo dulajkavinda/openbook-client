@@ -155,6 +155,9 @@ class App extends React.Component {
                 <option value="fnlecture">
                   Finance (06/06 Lectures Processed)
                 </option>
+                <option value="lawlecture">
+                  Law (07/07 Lectures Processed)
+                </option>
               </Form.Control>
             </Nav>
             <Nav>
