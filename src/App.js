@@ -43,7 +43,7 @@ class App extends React.Component {
   searchLectures = () => {
     if (this.state.input !== "") {
       let aar = [];
-      this.state.lectures.map((el, index)
+      this.state.lectures.map((el, index) => {
         el.content.map((ct, index) => {
           let keyword = this.state.input.toLocaleLowerCase().replace(/ /g, "");
           var content_lower = ct.toLowerCase().replace(/ /g, "");
@@ -55,7 +55,7 @@ class App extends React.Component {
               lectureTitle: el.lectureName,
             };
 
-            aar.push(resultArray);t
+            aar.push(resultArray);
           }
         });
       });
@@ -103,7 +103,6 @@ class App extends React.Component {
                 searchWords={this.state.input.split(" ")}
                 textToHighlight={el.pageContent}
               />
-              }
             </Card.Text>
           </Card.Body>
         </Card>
@@ -158,9 +157,6 @@ class App extends React.Component {
                 <option value="lawlecture">
                   Law (07/07 Lectures Processed)
                 </option>
-                <option value="cloud">
-                  Cloud Computing (01/01 Lectures Processed)
-                </option>
               </Form.Control>
             </Nav>
             <Nav>
@@ -168,7 +164,7 @@ class App extends React.Component {
                 <img src={gitlogo} style={{ width: 30, height: 30 }} />
               </Nav.Link>
             </Nav>
-          </Navbar.Collapse>f
+          </Navbar.Collapse>
         </Navbar>
         <div style={{ margin: 20 }}>
           <div className="input-group ">
