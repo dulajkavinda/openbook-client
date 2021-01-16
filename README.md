@@ -1,4 +1,4 @@
-# 📝 Openbook Client
+# 📝 Openbook Client (Version 1.0) 
 
 Web application to query lecture slides.
 
