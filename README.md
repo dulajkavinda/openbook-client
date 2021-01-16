@@ -2,6 +2,8 @@
 
 Web application to query lecture slides.
 
+### I terminated the heroku server for this project since i started working on a upgraded version with more features.
+
 <img src='public/captured.gif' />
 
 ## Getting Started
